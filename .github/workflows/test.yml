@@ -1,0 +1,29 @@
+name: Run jobs in parallel with matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Generate matrix
+        id: set-matrix
+        run: |
+          set -ex
+          matrix="[1,2,3]"
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+  http_requests:
+    needs: generate_matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        batch: ${{ fromJson(needs.generate_matrix.outputs.matrix) }}
+    steps:
+      - name: Run all tasks
+        run: |
+          echo "batch ${{ matrix.batch }}"
+          curl https://www.google.com/search?q=${{ matrix.batch }}
