@@ -1,0 +1,15 @@
+name: Print params
+
+on:
+  workflow_dispatch:
+
+env:
+  XX_FOO: 'BAR'
+
+jobs:
+  print_params:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display parameters
+        shell: bash
+        run: echo "${{ format('<h1>Parameters</h1><p>{0}</p>', env.XX_FOO) }}" > "$GITHUB_STEP_SUMMARY"
