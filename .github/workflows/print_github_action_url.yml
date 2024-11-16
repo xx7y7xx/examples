@@ -1,0 +1,14 @@
+# Print the URL of the current GitHub Action run
+
+name: Print GitHub Action URL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_url:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print URL
+        run: |
+          echo "GitHub Action URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
