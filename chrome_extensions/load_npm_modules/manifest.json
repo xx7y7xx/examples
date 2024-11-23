@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "load_npm_modules",
+  "description": "Example: How to load a module from npm packages",
+  "version": "1.0",
+  "background": {
+    "service_worker": "backgroundScripts/index.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "logo-192x192.png"
+  },
+  "permissions": ["tabs", "notifications", "storage", "scripting", "alarms"]
+}
