@@ -26,23 +26,26 @@
 </html>
 <script type="text/javascript">
   // 百度地图API功能
-  //谷歌坐标
-  var x = 116.32715863448607;
-  var y = 39.990912172420714;
-  var ggPoint = new BMapGL.Point(x, y);
+
+  /**
+   * The lat/lng are from OpenStreetMap API: https://nominatim.openstreetmap.org/search?q=哈尔滨东站&format=json&polygon=1
+   */
+  var x = 126.7050980254954;
+  var y = 45.78653894999999;
+  var osmPoint = new BMapGL.Point(x, y);
 
   //地图初始化
   var bm = new BMapGL.Map('allmap');
-  bm.centerAndZoom(ggPoint, 15);
+  bm.centerAndZoom(osmPoint, 15);
   bm.addControl(new BMapGL.ZoomControl()); //添加缩放控件
 
   //添加谷歌marker和label
-  var markergg = new BMapGL.Marker(ggPoint);
-  bm.addOverlay(markergg); //添加谷歌marker
-  var labelgg = new BMapGL.Label('未转换的谷歌标注（错误）', {
+  var markerosm = new BMapGL.Marker(osmPoint);
+  bm.addOverlay(markerosm); //添加谷歌marker
+  var labelosm = new BMapGL.Label('未转换的谷歌标注（错误）', {
     offset: new BMapGL.Size(20, -10),
   });
-  markergg.setLabel(labelgg); //添加谷歌label
+  markerosm.setLabel(labelosm); //添加谷歌label
 
   //坐标转换完之后的回调函数
   translateCallback = function (data) {
@@ -61,10 +64,11 @@
   setTimeout(function () {
     var convertor = new BMapGL.Convertor();
     var pointArr = [];
-    pointArr.push(ggPoint);
+    pointArr.push(osmPoint);
     convertor.translate(
       pointArr,
-      COORDINATES_GCJ02,
+      // COORDINATES_GCJ02, // Google
+      COORDINATES_WGS84, // OSM
       COORDINATES_BD09,
       translateCallback
     );
