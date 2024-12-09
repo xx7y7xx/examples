@@ -30,9 +30,6 @@ const main = async () => {
   const bob = users.fetch(1);
   const alice = users.fetch(2);
 
-  const bobUndtAlice = await Promise.all([bob, alice]);
-  console.log('bobUndtAlice', bobUndtAlice);
-
   await delay(100);
 
   /**
@@ -41,8 +38,9 @@ const main = async () => {
   const joe = users.fetch(3);
   const margareth = users.fetch(4);
 
-  const joeUndtMargareth = await Promise.all([joe, margareth]);
-  console.log('joeUndtMargareth', joeUndtMargareth);
+  const allUsers = await Promise.all([bob, alice, joe, margareth]);
+
+  console.log(allUsers);
 };
 
 main();
