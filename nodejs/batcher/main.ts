@@ -9,7 +9,7 @@ const client_users_where = (params: { id_in: number[] }) =>
   new Promise<User[]>((resolve) => {
     setTimeout(() => {
       console.log('Fetching users with params:', params);
-      resolve([]);
+      resolve(params.id_in.map((id) => ({ id, name: `User ${id}` })));
     }, 500);
   });
 
@@ -31,6 +31,7 @@ const main = async () => {
   const alice = users.fetch(2);
 
   const bobUndtAlice = await Promise.all([bob, alice]);
+  console.log('bobUndtAlice', bobUndtAlice);
 
   await delay(100);
 
@@ -41,6 +42,7 @@ const main = async () => {
   const margareth = users.fetch(4);
 
   const joeUndtMargareth = await Promise.all([joe, margareth]);
+  console.log('joeUndtMargareth', joeUndtMargareth);
 };
 
 main();
