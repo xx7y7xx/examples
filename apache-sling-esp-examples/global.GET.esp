@@ -1,0 +1,44 @@
+<%
+
+/**
+ * @file global.GET.esp
+ * @brief All global variable for esp(ECMAScript) execution.
+ * @detail 
+ * Interface: <code>org.apache.sling.api.scripting.SlingBindings</code>
+ * http://sling.apache.org/apidocs/sling7/org/apache/sling/api/scripting/SlingBindings.html
+ */
+
+/**
+ * @brief Global object <code>sling</code>
+ * @detail
+ * Interface: <code>org.apache.sling.api.scripting.SlingScriptHelper</code>
+ * http://sling.apache.org/apidocs/sling7/org/apache/sling/api/scripting/SlingScriptHelper.html
+ */
+
+/**
+ * Method: <code>sling.getService</code>
+ */
+
+/**
+ * All packages list: http://sling.apache.org/apidocs/sling7/index.html
+ * E.g.
+ *   $package_name="org.apache.sling.settings"    // http://sling.apache.org/apidocs/sling7/org/apache/sling/settings/package-summary.html
+ *   $interface_name="SlingSettingsService"       // http://sling.apache.org/apidocs/sling7/org/apache/sling/settings/SlingSettingsService.html
+ *   $service = sling.getService( $package_name + "." + $interface_name)
+ *   $service.$method_name()
+ */
+
+var SlingSettingsService = sling.getService(Packages.org.apache.sling.settings.SlingSettingsService);
+out.println(SlingSettingsService.getSlingHome());
+
+/**
+ * Package: org.apache.sling.commons.threads
+ */
+
+// Interface: ThreadPoolManager
+var ThreadPoolManager = sling.getService(Packages.org.apache.sling.commons.threads.ThreadPoolManager);
+// Interface: ThreadPool
+var ThreadPool = sling.getService(Packages.org.apache.sling.commons.threads.ThreadPool);
+
+
+%>
