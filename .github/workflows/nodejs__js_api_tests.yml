@@ -22,8 +22,5 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install NPM packages
-        run: cd nodejs/js-api-tests && npm install
-
-      - name: Run tests
-        run: npm run test
+      - name: Install NPM packages and run tests
+        run: cd nodejs/js-api-tests && npm install && npm run test
