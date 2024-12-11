@@ -1,0 +1,26 @@
+{
+  "name": "bluebird-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.5.4"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1"
+  },
+  "scripts": {
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxd3vin/bluebird-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xxd3vin/bluebird-test/issues"
+  },
+  "homepage": "https://github.com/xxd3vin/bluebird-test#readme"
+}
