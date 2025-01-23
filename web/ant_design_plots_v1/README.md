@@ -1,6 +1,8 @@
 # create-react-app
 
-Generated from create-react-app with typescript template.
+An example of line chart using ant design plots.
+
+Based on create-react-app with typescript template.
 
 ```
 npm i
