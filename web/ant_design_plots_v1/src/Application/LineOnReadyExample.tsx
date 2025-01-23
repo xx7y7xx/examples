@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line, LineConfig } from '@ant-design/plots';
+import { Line, LineConfig, Plot, PlotEvent } from '@ant-design/plots';
 
 const LineOnReadyExample = () => {
   const data = [
@@ -29,6 +29,14 @@ const LineOnReadyExample = () => {
       // type: 'timeCat',
       tickCount: 5,
     },
+    // TODO which type to choose for `plot`?
+    // onReady: (plot: Plot<LineConfig>) => {
+    onReady: (plot: Plot<any>) => {
+      plot.on('mousemove', (evt: PlotEvent) => {
+        console.log('mousemove', evt);
+      });
+
+    }
   };
   return <Line {...config} />;
 };
