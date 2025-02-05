@@ -5,6 +5,7 @@ on:
 
 env:
   XX_FOO: 'BAR'
+  XX_BAR: 'BAZ'
 
 jobs:
   print_params:
@@ -16,8 +17,5 @@ jobs:
       - name: Display complex parameters
         shell: bash
         run: |
-          PARAM1="Value1"
-          PARAM2="Value2"
-          PARAM3="Value3"
-          FORMATTED_OUTPUT=$(echo "${{ format('<h1>Parameters</h1><ul><li>{0}</li><li>{1}</li><li>{2}</li><li>{3}</li></ul>', env.XX_FOO, PARAM1, PARAM2, PARAM3) }}")
+          FORMATTED_OUTPUT=$(echo "${{ format('<h1>Parameters</h1><ul><li>{0}</li><li>{1}</li><li>{2}</li></ul>', env.XX_FOO, env.XX_BAR) }}")
           echo "$FORMATTED_OUTPUT" > "$GITHUB_STEP_SUMMARY"
