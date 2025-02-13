@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Get Wikipedia Raw Content</title>
+    <script>
+      async function getWikipediaRawContent(pageTitle) {
+        // For English Wikipedia, change the URL to en.wikipedia.org
+        const url = `https://zh.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=${encodeURIComponent(
+          pageTitle
+        )}&rvprop=content&formatversion=2&origin=*`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.query && data.query.pages && data.query.pages.length > 0) {
+            const page = data.query.pages[0];
+            if (page.revisions && page.revisions.length > 0) {
+              return page.revisions[0].content;
+            } else {
+              throw new Error('No revisions found for the page.');
+            }
+          } else {
+            throw new Error('Page not found.');
+          }
+        } catch (error) {
+          console.error('Error fetching Wikipedia content:', error);
+        }
+      }
+
+      // Example usage:
+      getWikipediaRawContent('中国铁路列车车次').then((content) => {
+        console.log(content);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Get Wikipedia Raw Content</h1>
+    <p>Open the browser console to see the raw content of a Wikipedia page.</p>
+  </body>
+</html>
