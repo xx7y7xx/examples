@@ -13,3 +13,4 @@ jobs:
         run: |
           echo 'Print "echo" to Summary panel, but leave "echo" in the Log panel:' >> "$GITHUB_STEP_SUMMARY"
           echo "Remote branch not found, skipping merge." >> "$GITHUB_STEP_SUMMARY"
+          echo "This content should be only in the Log panel."
