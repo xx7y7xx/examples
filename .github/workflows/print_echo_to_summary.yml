@@ -1,0 +1,15 @@
+name: Print echo results to GITHUB_STEP_SUMMARY
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_echo_to_summary:
+    runs-on: ubuntu-latest
+    steps:
+      # Summary panel: echo result
+      # Log: echo result
+      - name: Print "echo" to Summary panel, but leave "echo" in the Log panel
+        run: |
+          echo 'Print "echo" to Summary panel, but leave "echo" in the Log panel:' >> "$GITHUB_STEP_SUMMARY"
+          echo "Remote branch not found, skipping merge." >> "$GITHUB_STEP_SUMMARY"
