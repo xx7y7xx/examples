@@ -7,11 +7,20 @@ jobs:
   print_echo_to_summary:
     runs-on: ubuntu-latest
     steps:
+      # Summary panel: empty
+      # Log: echo result
+      - name: Print "echo" only in the Log panel
+        run: |
+          echo "This content should be only in the Log panel."
+
       # Summary panel: echo result
       # Log: echo result
-      - name: Print "echo" to Summary panel, but leave "echo" in the Log panel
+      - name: Print "echo" both in the Summary panel and the Log panel
         run: |
-          echo 'Print "echo" to Summary panel, but leave "echo" in the Log panel:' >> "$GITHUB_STEP_SUMMARY"
-          echo "Remote branch not found, skipping merge." >> "$GITHUB_STEP_SUMMARY"
-          echo "This content should be only in the Log panel."
           echo "This content will be in both the Summary panel and the Log panel." | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # Summary panel: echo result
+      # Log: empty
+      - name: Print "echo" only in the Summary panel
+        run: |
+          echo "This content should be only in the Summary panel." >> "$GITHUB_STEP_SUMMARY"
