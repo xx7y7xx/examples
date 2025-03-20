@@ -7,14 +7,20 @@ jobs:
   print_github_action_path:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Print github action path
         run: |
           set -ex
-          echo 0
-          echo $GITHUB_ACTION_PATH
-          echo 1
-          echo ${GITHUB_ACTION_PATH}
-          echo 2
-          echo ${{ github.action_path }}
-          echo 3
+          echo "Current working directory:"
           pwd
+
+          echo "GITHUB_ACTION_PATH environment variable:"
+          echo "$GITHUB_ACTION_PATH"
+
+          echo "github.action_path context variable:"
+          echo "${{ github.action_path }}"
+
+          echo "Repository root directory contents:"
+          ls -la
