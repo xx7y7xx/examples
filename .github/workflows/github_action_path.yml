@@ -16,11 +16,8 @@ jobs:
           echo "Current working directory:"
           pwd
 
-          echo "GITHUB_ACTION_PATH environment variable:"
-          echo "$GITHUB_ACTION_PATH"
-
-          echo "github.action_path context variable:"
-          echo "${{ github.action_path }}"
+          echo "GitHub Workspace:"
+          echo "$GITHUB_WORKSPACE"
 
           echo "Repository root directory contents:"
           ls -la
