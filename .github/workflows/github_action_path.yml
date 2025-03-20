@@ -7,25 +7,26 @@ jobs:
   print_github_action_path:
     runs-on: ubuntu-latest
     steps:
-      - name: Print github action path
+      - name: Print current working directory
         run: |
           set -ex
           echo "Current working directory:"
           pwd
 
-          echo "Print GITHUB_ACTION_PATH"
-          echo "$GITHUB_ACTION_PATH"
-
-          echo "github.action_path context variable:"
-          echo "${{ github.action_path }}"
-
           echo "GitHub Workspace:"
           echo "$GITHUB_WORKSPACE"
 
-      - name: Set env variable then print it
+      - name: Incorrect way to print github action path
         run: |
           set -ex
-          echo "Print FOO_GITHUB_ACTION_PATH_BAR after setting it"
+
+          echo "GITHUB_ACTION_PATH var is empty:"
+          echo "$GITHUB_ACTION_PATH"
+
+          echo "github.action_path context variable is empty:"
+          echo "${{ github.action_path }}"
+
+          echo "FOO_GITHUB_ACTION_PATH_BAR is empty:"
           echo "$FOO_GITHUB_ACTION_PATH_BAR"
         env:
           FOO_GITHUB_ACTION_PATH_BAR: ${{ github.action_path }}
