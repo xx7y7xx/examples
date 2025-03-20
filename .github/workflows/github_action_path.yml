@@ -1,0 +1,14 @@
+name: GitHub Action path
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_github_action_path:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print github action path
+        run: |
+          set -ex
+          echo $GITHUB_ACTION_PATH
+          pwd
