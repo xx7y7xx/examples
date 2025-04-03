@@ -1,10 +1,12 @@
+const version = 1;
+
 const main = () => {
   console.log('delete old db');
 
   // delete old db
   indexedDB.deleteDatabase('test_db');
 
-  const db = indexedDB.open('test_db', 1);
+  const db = indexedDB.open('test_db', version);
   db.onupgradeneeded = (event) => {
     console.log('db.onupgradeneeded: Database upgrade needed');
     const db = (event.target as IDBOpenDBRequest).result;
