@@ -1,9 +1,11 @@
+console.log('delete old db');
+
 // delete old db
 indexedDB.deleteDatabase('test_db');
 
 const db = indexedDB.open('test_db', 1);
 db.onupgradeneeded = (event) => {
-  console.log('Database upgrade needed');
+  console.log('db.onupgradeneeded: Database upgrade needed');
   const db = (event.target as IDBOpenDBRequest).result;
 
   // Create an object store with a keyPath 'id'
@@ -15,7 +17,7 @@ db.onupgradeneeded = (event) => {
   // store2.createIndex('code', 'code', { unique: false });
 };
 db.onsuccess = (event) => {
-  console.log('Database created');
+  console.log('db.onsuccess: Database created');
   const db = (event.target as IDBOpenDBRequest).result;
 
   // Add data to the test_store_1 object store
@@ -23,7 +25,7 @@ db.onsuccess = (event) => {
   const store = transaction.objectStore('test_store_1');
   store.add({ id: 1, name: 'Metadata', createdAt: new Date() });
   transaction.oncomplete = () => {
-    console.log('Data added to store');
+    console.log('transaction.oncomplete: Data added to store');
   };
 
   // Add data to the test_store_2 object store
@@ -31,7 +33,7 @@ db.onsuccess = (event) => {
   const store2 = transaction2.objectStore('test_store_2');
   store2.add({ code: 'A', name: 'Alpha', createdAt: new Date() });
   transaction2.oncomplete = () => {
-    console.log('Data added to store 2');
+    console.log('transaction2.oncomplete: Data added to store 2');
   };
 };
 
