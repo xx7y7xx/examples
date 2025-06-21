@@ -21,7 +21,7 @@ jobs:
           echo "console.warn('[ERROR]');" >> console_warn.js
           echo "console.warn('[WARN]');" >> console_warn.js
 
-          echo "console.error('log');" >> console_error.js
+          echo "console.error('log');" > console_error.js
           echo "console.error('error');" >> console_error.js
           echo "console.error('[error]');" >> console_error.js
           echo "console.error('[ERROR]');" >> console_error.js
