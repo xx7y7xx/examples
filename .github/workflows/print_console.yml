@@ -7,24 +7,34 @@ jobs:
   print_console:
     runs-on: ubuntu-latest
     steps:
-      - name: Create main.js
+      - name: Create console_log.js
         run: |
-          echo "console.log('log');" > main.js
-          echo "console.log('error');" >> main.js
-          echo "console.log('[error]');" >> main.js
-          echo "console.log('[ERROR]');" >> main.js
-          echo "console.log('[WARN]');" >> main.js
-          echo "console.warn('log');" > main.js
-          echo "console.warn('error');" >> main.js
-          echo "console.warn('[error]');" >> main.js
-          echo "console.warn('[ERROR]');" >> main.js
-          echo "console.warn('[WARN]');" >> main.js
-          echo "console.error('log');" >> main.js
-          echo "console.error('error');" >> main.js
-          echo "console.error('[error]');" >> main.js
-          echo "console.error('[ERROR]');" >> main.js
-          echo "console.error('[WARN]');" >> main.js
+          echo "console.log('log');" > console_log.js
+          echo "console.log('error');" >> console_log.js
+          echo "console.log('[error]');" >> console_log.js
+          echo "console.log('[ERROR]');" >> console_log.js
+          echo "console.log('[WARN]');" >> console_log.js
+
+          echo "console.warn('log');" > console_warn.js
+          echo "console.warn('error');" >> console_warn.js
+          echo "console.warn('[error]');" >> console_warn.js
+          echo "console.warn('[ERROR]');" >> console_warn.js
+          echo "console.warn('[WARN]');" >> console_warn.js
+
+          echo "console.error('log');" >> console_error.js
+          echo "console.error('error');" >> console_error.js
+          echo "console.error('[error]');" >> console_error.js
+          echo "console.error('[ERROR]');" >> console_error.js
+          echo "console.error('[WARN]');" >> console_error.js
 
       - name: Print console.log
         run: |
-          node main.js
+          node console_log.js
+
+      - name: Print console.warn
+        run: |
+          node console_warn.js
+
+      - name: Print console.error
+        run: |
+          node console_error.js
