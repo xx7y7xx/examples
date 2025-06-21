@@ -22,7 +22,7 @@ async function sendLog(level, message, labels = {}) {
       streams: [
         {
           stream: {
-            job: "train_scraping",
+            job: "examples__nodejs__grafana_loki",
             level,
             ...labels,
           },
