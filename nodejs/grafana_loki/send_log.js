@@ -56,4 +56,10 @@ if (require.main === module) {
   sendLog("info", `Test log at ${now}`).then(() => {
     console.log("✅ Log sent");
   });
+  sendLog("warn", `Test warn log at ${now}`).then(() => {
+    console.log("✅ Warn log sent");
+  });
+  sendLog("error", `Test error log at ${now}`).then(() => {
+    console.log("✅ Error log sent");
+  });
 }
