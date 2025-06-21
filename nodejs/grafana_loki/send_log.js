@@ -15,6 +15,12 @@
 
 const axios = require("axios");
 
+/**
+ * Send log to Grafana Cloud
+ * @param {string} level - Log level, one of "info", "warn", "error"
+ * @param {string} message - Log message
+ * @param {object} labels - Log labels
+ */
 async function sendLog(level, message, labels = {}) {
   try {
     const timestamp = Date.now() * 1000000;
