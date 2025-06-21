@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
+  GRAFANA_USERNAME: ${{ secrets.GRAFANA_USERNAME }}
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install NPM packages
+        run: cd nodejs/grafana_loki && npm install
+
+      - name: Send log to Grafana Cloud
+        run: |
+          node loki_send_log.js

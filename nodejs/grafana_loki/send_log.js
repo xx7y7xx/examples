@@ -6,7 +6,7 @@
  * await sendLog('info', 'Train scraping started', { batch_id: 'batch-1' });
  *
  * Usage 2:
- * GRAFANA_PASSWORD=your_password GRAFANA_USERNAME=your_username node loki_send_log.js
+ * GRAFANA_PASSWORD=your_password GRAFANA_USERNAME=your_username node send_log.js
  *
  * Environment variables:
  * - GRAFANA_PASSWORD: Grafana Cloud password
