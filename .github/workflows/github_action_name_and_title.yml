@@ -1,0 +1,13 @@
+name: GitHub Action name and title
+description: Print the name and title of the current GitHub Action run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_github_action_name_and_title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GitHub Action name and title
+        run: |
+          echo "Current working directory:"
