@@ -1,5 +1,7 @@
 name: GitHub Action name and title
-description: Print the name and title of the current GitHub Action run
+# description: Print the name and title of the current GitHub Action run # NOT_WOKRK
+
+run-name: Deploy by @${{ github.actor }}
 
 on:
   workflow_dispatch:
