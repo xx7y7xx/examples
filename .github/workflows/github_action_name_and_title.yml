@@ -1,7 +1,11 @@
 name: GitHub Action name and title
 # description: Print the name and title of the current GitHub Action run # NOT_WOKRK
 
-run-name: Deploy by @${{ github.actor }}
+# Will update "GitHub Action name and title" to "Deploy by @foobar"
+# Can use `github` and `inputs` context variables
+# - `github` - e.g. `github.actor`
+# - `inputs` - e.g. `inputs.input_param`
+run-name: Deploy by @${{ github.actor }} # WORK
 
 on:
   workflow_dispatch:
