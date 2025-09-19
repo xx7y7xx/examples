@@ -51,21 +51,29 @@ async function sendLog(level, message, labels = {}) {
       }
     );
   } catch (error) {
-    console.error(`❌ Failed to send log: ${error.message}`);
+    console.error(
+      `❌ Failed to send log: ${error.message} : ${error.response.data}`
+    );
   }
 }
 
 module.exports = sendLog;
 
 if (require.main === module) {
-  const now = new Date().toISOString();
-  sendLog("info", `Test log at ${now}`).then(() => {
+  sendLog("info", `Test info log`).then(() => {
     console.log("✅ Log sent");
   });
-  sendLog("warn", `Test warn log at ${now}`).then(() => {
+  sendLog("warn", `Test warn log`).then(() => {
     console.log("✅ Warn log sent");
   });
-  sendLog("error", `Test error log at ${now}`).then(() => {
+  sendLog("error", `Test error log`).then(() => {
     console.log("✅ Error log sent");
+  });
+
+  // Send with labels
+  sendLog("info", `Test data log`, {
+    foo: "bar",
+  }).then(() => {
+    console.log("✅ Test data log sent");
   });
 }
