@@ -1,0 +1,44 @@
+name: Print nodejs stdout and stderr to GITHUB_STEP_SUMMARY
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_nodejs_stdout_and_stderr_to_summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create main.js
+        run: |
+          echo "console.log('msg_in_stdout');" > main.js # nodejs=>stdout
+          echo "console.error('msg_in_stderr');" >> main.js # nodejs=>stderr
+
+      # Summary panel: msg_in_stderr
+      # Log: msg_in_stdout
+      - name: Print "msg_in_stderr" to Summary panel, but leave "msg_in_stdout" in the Log panel
+        run: |
+          echo 'Print "msg_in_stderr" to Summary panel, but leave "msg_in_stdout" in the Log panel:' >> "$GITHUB_STEP_SUMMARY"
+          node main.js 2>> "$GITHUB_STEP_SUMMARY"
+
+      # Summary panel: msg_in_stdout
+      # Log: msg_in_stderr
+      - name: Print "msg_in_stdout" to Summary panel, but leave "msg_in_stderr" in the Log panel
+        run: |
+          echo "====================\n" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Print "msg_in_stdout" to Summary panel, but leave "msg_in_stderr" in the Log panel:' >> "$GITHUB_STEP_SUMMARY"
+          node main.js 1>> "$GITHUB_STEP_SUMMARY"
+
+      # Summary panel: msg_in_stdout
+      # Log: msg_in_stderr
+      - name: Print "msg_in_stdout" to Summary panel, but leave "msg_in_stderr" in the Log panel (same as above)
+        run: |
+          echo "====================\n" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Print "msg_in_stdout" to Summary panel, but leave "msg_in_stderr" in the Log panel (same as above):' >> "$GITHUB_STEP_SUMMARY"
+          node main.js >> "$GITHUB_STEP_SUMMARY"
+
+      # Summary panel: msg_in_stderr
+      # Log panel: msg_in_stdout + msg_in_stderr
+      - name: Print "msg_in_stderr" to Summary panel, and print both "msg_in_stdout" and "msg_in_stderr" to the Log panel
+        run: |
+          echo "====================\n" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Print "msg_in_stderr" to Summary panel, and print both "msg_in_stdout" and "msg_in_stderr" to the Log panel:' >> "$GITHUB_STEP_SUMMARY"
+          node main.js 2> >(tee -a "$GITHUB_STEP_SUMMARY")
