@@ -1,5 +1,5 @@
 # How to use GitHub Action environment variables
-name: How to use GitHub Action environment variables
+name: GitHub Action environment variables
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
           echo "GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
           echo "GITHUB_ACTION_REPOSITORY: $GITHUB_ACTION_REPOSITORY"
           echo "GITHUB_ACTION_RUN_ID: $GITHUB_ACTION_RUN_ID"
-      - name: Cypress run
+      - name: Print FOO_BAR environment variable
         run: |
           echo "FOO_BAR: $FOO_BAR"
         env:
